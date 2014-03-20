@@ -1,53 +1,18 @@
-# Sick-Model
+# ES5 Object.observe polyfill
+[After taking inspiration from eligrey](https://gist.github.com/eligrey/384583), I've decided to implement an Object.observe polyfill that matches spec almost 100% (see below for differences). If you're not familiar with the API, [HTML5 Rocks](http://updates.html5rocks.com/2012/11/Respond-to-change-with-Object-observe) has a good writeup on it.
 
-Sick-Model is an object wrapper that add's a crucial method, `onChange`. This allows an application to listen for changes to a model property, and do something when it happens. Largely inspired by Object.observe and Object.watch.
+## Differences
+Though this polyfill has the majority of functionality that I anticipate people to use, there are a few differences.
 
-## Integrating it
+### Missing Features:
+- Doesn't work with Arrays. This might be addressed in the future.
+- Only supports the `add`, `delete`, and `update` events on an object. The Spec implements other low-level events, such as `preventExtensions` and `frozen`. These may be addressed at a later date.`
 
-```
-/**
- * RequireJS
- */
-require('./index.js', function(SickModel) {
-	// Your code here with SickModel!
-});
+### API Differences
+- Deleted properties don't have the `oldValue` parameter in the change payload.
 
-/**
- * CommonJS/Node/WebPack
- */
-var SickModel = require('./index.js');
+## Intended Uses
+The most obvious use is for data-binding. When a user, or another 3rd party, makes changes to an object there can now be handlers in place for how to respond. This brings an incredible amount of automation and power to applications.
 
-// Or if it's your node_modules
-var SickModel = require('sick-merge');
-
-/**
- * 90's Web Developers
- */
-<script src="index.js" type="text/javascript"></script>
-```
-
-## Example
-
-```javascript
-// Simple model
-var jeffreyLebowski = {
-	name: 'Jeffrey Lebowski',
-	nickname: 'The Dude',
-	sport: 'Bowling',
-	rugStatus: 'Stolen'
-};
-
-// Adding the onChange of Sick-Model
-var theDude = new SickModel(jeffreyLebowski);
-
-// Listening for the change
-theDude.onChange('rugStatus', function(propName, oldValue, newValue) {
-	console.log(propName, oldValue, newValue);
-});
-
-// When it changes
-theDude.rugStatus = 'Found'; // Prints: 'rugStatus, Stolen, Found'
-```
-
-## About
-This code mostly revovles around [the wonderful shim that Eli Grey has written](https://gist.github.com/eligrey/384583). Instead of implementing it in the Object.prototype, however, it merely adds it ONLY to the object you pass it in the constructor, thus keeping the namespace clean.
+## Support
+This will work in any browser that has implemented ES5. To summarize: IE9+, Chrome 6+, FireFox 4+, Safari 5+, and Node.
