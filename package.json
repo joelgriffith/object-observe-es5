@@ -1,0 +1,26 @@
+{
+  "name": "Observe polyfill",
+  "version": "0.0.1",
+  "description": "An Object.observe polyfill that uses some ES5 stuff as well as some small dirty checking (for new and deleted properties). ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "data",
+    "data-binding",
+    "watch",
+    "observe",
+    "mvc"
+  ],
+  "repository" : {
+    "type" : "git",
+    "url" : ""
+  },
+  "author": "Joel Griffith",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp-mocha": "~0.4.1",
+    "gulp": "~3.5.5"
+  }
+}

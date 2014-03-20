@@ -1,0 +1,8 @@
+# Ignore Dev Files
+.jshintrc
+.travis.yml
+
+# Logs and system stuff
+npm-debug.log
+.DS_STORE
+.git/

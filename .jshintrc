@@ -1,0 +1,23 @@
+{
+    "bitwise": true,
+    "browser": true,
+    "curly": false,
+    "devel": true,
+    "eqeqeq": true,
+    "es3": true,
+    "freeze": true,
+    "immed": true,
+    "maxdepth": 2,
+    "newcap": true,
+    "noarg": true,
+    "node": true,
+    "notypeof": true,
+    "trailing": true,
+    "undef": true,
+    "unused": true,
+    "globals": {
+        "define": false,
+        "module": false,
+        "modules": false
+    }
+}
