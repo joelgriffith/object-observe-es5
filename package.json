@@ -1,7 +1,7 @@
 {
-  "name": "Observe polyfill",
+  "name": "ES5-Observe-Polyfill",
   "version": "0.0.1",
-  "description": "An Object.observe polyfill that uses some ES5 stuff as well as some small dirty checking (for new and deleted properties). ",
+  "description": "An ES5 Object.observe polyfill.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +15,7 @@
   ],
   "repository" : {
     "type" : "git",
-    "url" : ""
+    "url" : "https://github.com/joelgriffith/object-observe-es5"
   },
   "author": "Joel Griffith",
   "license": "MIT",

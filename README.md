@@ -17,3 +17,6 @@ The most obvious use is for data-binding. When a user, or another 3rd party, mak
 
 ## Support
 This will work in any browser that has implemented ES5. To summarize: IE9+, Chrome 6+, FireFox 4+, Safari 5+, and Node.
+
+## License
+MIT.
