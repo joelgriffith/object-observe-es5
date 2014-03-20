@@ -6,10 +6,11 @@ Though this polyfill has the majority of functionality that I anticipate people 
 
 ### Missing Features:
 - Doesn't work with Arrays. This might be addressed in the future.
-- Only supports the `add`, `delete`, and `update` events on an object. The Spec implements other low-level events, such as `preventExtensions` and `frozen`. These may be addressed at a later date.`
+- Only supports the `add`, `delete`, and `update` events on an object. The Spec implements other low-level events, such as `preventExtensions` and `frozen`. These may be addressed at a later date.
 
 ### API Differences
 - Deleted properties don't have the `oldValue` parameter in the change payload.
+- Currently, the changes payload is only a single-element array. This will be updated in the future.
 
 ## Intended Uses
 The most obvious use is for data-binding. When a user, or another 3rd party, makes changes to an object there can now be handlers in place for how to respond. This brings an incredible amount of automation and power to applications.
