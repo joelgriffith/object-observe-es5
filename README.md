@@ -21,7 +21,7 @@ This will work in any browser that has implemented ES5. To summarize: IE9+, Chro
 ## License
 The MIT License (MIT)
 
-Copyright (c) <year> <copyright holders>
+Copyright (c) 2014 Joel Griffith
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
