@@ -74,7 +74,6 @@
                 /**
                  *  Watch For Changes
                  *  Dirty check the object's properties and handle new/deleted properties
-                 *      in the same tick, the latter ones won't be there.
                  */
                 function watchForChanges() {
                     if (Object.keys(obj).length !== length) {
@@ -150,7 +149,7 @@
                 }
 
                 /**
-                 *  Clear the dirty check timer, and delete the no unused timer property
+                 *  Clear the dirty check timer, and delete the now unused __interval__ property
                  */
                 clearInterval(obj.__interval__);
                 delete obj.__interval__;
