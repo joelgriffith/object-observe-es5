@@ -5,7 +5,6 @@ var gulp = require('gulp'),
     info = require('./package.json'),
     mocha = require('gulp-mocha'),
 	webpack = require('webpack'),
-	base = './',
 	dist = './build',
 	jsIndex = './index.js',
 	title = info.name,
@@ -78,8 +77,6 @@ gulp.task('clean', function() {
 
 // Watch task
 gulp.task('watch', function() {
-
-	// Watch .js files
 	gulp.watch('lib/*.js', function(event) {
 		gutil.log('Watch:', 'File ' + event.path + ' was ' + event.type + ', running tasks...');
 		gulp.start('hint', 'build', 'test');

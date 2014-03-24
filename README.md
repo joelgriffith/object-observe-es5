@@ -1,6 +1,20 @@
 # ES5 Object.observe polyfill
 [After taking inspiration from eligrey](https://gist.github.com/eligrey/384583), I've decided to implement an Object.observe polyfill that matches spec almost 100% (see below for differences). If you're not familiar with the API, [HTML5 Rocks](http://updates.html5rocks.com/2012/11/Respond-to-change-with-Object-observe) has a good writeup on it.
 
+## Testing
+A full test-suite is included with this polyfill. You'll need `mocha`, and `jshint` installed globally for the best results. To run:
+
+- `npm install && npm test`
+
+## Building
+There is also a gulp file included to build yourself. This requires the above `mocha`, `jshint`, and `mocha` must be installed globally.
+
+- `gulp` runs the default task, which is building, linting, and running the test suite.
+- `gulp test` runs the mocha test suite.
+- `gulp build` builds the minified js in `build/observe.min.<build>.js`
+- `gulp clean` cleans the `/build` directory.
+- `gulp hint` runs jshint on the `/lib` folder.
+
 ## Differences
 Though this polyfill has the majority of functionality that I anticipate people to use, there are a few differences.
 
