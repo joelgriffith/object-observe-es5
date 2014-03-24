@@ -25,18 +25,27 @@ describe('Utils', function() {
 			});
 		});
 
-		describe('#diff returns an array of deltas between two arrays', function() {
-			it('should return the difference(s) between two arrays', function() {
-				_.diff(m.array.diff.diffA, m.array.diff.diffB).must.have.length(1);
+		describe('#diff returns an object of deltas between two arrays from the perspective of the first array', function() {
+			it('should return an object with `all`,`deleted` and `added` properties', function() {
+				_.diff(m.array.diff.diffA, m.array.diff.diffB).must.be.an.object();
+				_.diff(m.array.diff.emptyA, m.array.diff.emptyB).added.must.be.an.array();
+				_.diff(m.array.diff.emptyA, m.array.diff.emptyB).deleted.must.be.an.array();
+				_.diff(m.array.diff.emptyA, m.array.diff.emptyB).all.must.be.an.array();
 			});
-			it('should return an empty array when there are no differences', function() {
-				_.diff(m.array.diff.emptyA, m.array.diff.emptyB).must.be.empty();
+			it('should return an empty object when there are no differences', function() {
+				_.diff(m.array.diff.emptyA, m.array.diff.emptyB).added.must.be.empty();
+				_.diff(m.array.diff.emptyA, m.array.diff.emptyB).deleted.must.be.empty();
 			});
 			it('should be ignorant of order', function() {
-				_.diff(m.array.diff.orderA, m.array.diff.orderB).must.be.empty();
+				_.diff(m.array.diff.orderA, m.array.diff.orderB).added.must.be.empty();
+				_.diff(m.array.diff.orderA, m.array.diff.orderB).deleted.must.be.empty();
 			});
-			it('should work with both numbers and strings', function() {
-				_.diff(m.array.diff.typeA, m.array.diff.typeB).must.eql(['4', 'd']);
+			it('should differentiate properties added from properties deleted', function() {
+				_.diff(m.array.diff.typeA, m.array.diff.typeB).added.must.eql(['4', 'd']);
+				_.diff(m.array.diff.typeA, m.array.diff.typeB).deleted.must.eql(['1', 'a']);
+			});
+			it('should show all deltas in the `all` property', function() {
+				_.diff(m.array.diff.typeA, m.array.diff.typeB).all.must.contain('4', 'd','1', 'a');
 			});
 			it('should throw a TypeError when comparing anything but Arrays', function(done) {
 				expect(function() { _.diff(m.array.diff.nonArrayA, m.array.diff.nonArrayB);}).to.throw(TypeError);
