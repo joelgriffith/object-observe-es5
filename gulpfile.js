@@ -27,9 +27,6 @@ var gulp = require('gulp'),
 	// Dist build location to output
 	dist = './build',
 
-	// JS directory (for watch and hinting)
-	js = './lib',
-
 	// Entry point for your JS app (builds look only at this)
 	jsIndex = './index.js',
 
@@ -90,7 +87,7 @@ gulp.task('default', ['clean'], function() {
 gulp.task('webpack', function() {
 	// modify some webpack config options
 	var myConfig = Object.create(webpackConfig);
-	myConfig.output.path = dist + '/js';
+	myConfig.output.path = dist;
 	myConfig.plugins = myConfig.plugins.concat(
 		new webpack.DefinePlugin({
 			'process.env': {
@@ -110,7 +107,7 @@ gulp.task('webpack', function() {
 
 // JSHinting
 gulp.task('hint', function() {
-  return gulp.src('**/*.js')
+  return gulp.src('./lib/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'));
 });

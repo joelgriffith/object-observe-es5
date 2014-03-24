@@ -4,8 +4,6 @@
     "curly": false,
     "devel": true,
     "eqeqeq": true,
-    "es3": true,
-    "es5": true,
     "expr": true,
     "freeze": true,
     "immed": true,
@@ -18,13 +16,9 @@
     "undef": true,
     "unused": true,
     "globals": {
-
-        /* Node CommonJS */
         "define": false,
         "module": false,
         "modules": false,
-
-        /* MOCHA */
         "describe"   : false,
         "it"         : false,
         "before"     : false,
