@@ -5,9 +5,11 @@
     "devel": true,
     "eqeqeq": true,
     "es3": true,
+    "es5": true,
+    "expr": true,
     "freeze": true,
     "immed": true,
-    "maxdepth": 2,
+    "maxdepth": 3,
     "newcap": true,
     "noarg": true,
     "node": true,
@@ -16,8 +18,18 @@
     "undef": true,
     "unused": true,
     "globals": {
+
+        /* Node CommonJS */
         "define": false,
         "module": false,
-        "modules": false
+        "modules": false,
+
+        /* MOCHA */
+        "describe"   : false,
+        "it"         : false,
+        "before"     : false,
+        "beforeEach" : false,
+        "after"      : false,
+        "afterEach"  : false
     }
 }
