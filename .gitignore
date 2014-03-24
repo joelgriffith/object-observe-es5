@@ -1,6 +1,9 @@
 # Modules
 node_modules
 
+# Build
+build/
+
 # Logs and system stuff
 npm-debug.log
 .DS_STORE

@@ -24,14 +24,11 @@ var gulp = require('gulp'),
 	// Source Code Directory
 	var base = './',
 
-	// Dev build location to output
-	dev = './build/dev',
-
 	// Dist build location to output
-	dist = './build/dist',
+	dist = './build',
 
 	// JS directory (for watch and hinting)
-	js = base + '/lib',
+	js = './lib',
 
 	// Entry point for your JS app (builds look only at this)
 	jsIndex = './index.js',
@@ -60,7 +57,7 @@ var webpackConfig = {
 	cache: true,
 	entry: jsIndex,
 	output: {
-		filename: "index.js"
+		filename: "observe.min." + build + ".js"
 	},
 	resolve: {
 		modulesDirectories: ['node_modules']
@@ -78,13 +75,7 @@ var webpackConfig = {
 // suite your needs.
 //////////////////////////////////////
 gulp.task('default', ['clean'], function() {
-    gulp.start('hint', 'webpack:dev', 'webpack:dist', 'styles:dev', 'styles:dist', 'images:dev', 'images:dist', 'html:dev', 'html:dist');
-});
-gulp.task('build:dev', ['clean'], function() {
-    gulp.start('hint', 'webpack:dev', 'styles:dev', 'images:dev', 'html:dev');
-});
-gulp.task('build:dist', ['clean'], function() {
-    gulp.start('hint', 'webpack:dist', 'styles:dist', 'images:dist', 'html:dist');
+    gulp.start('hint', 'webpack');
 });
 
 //////////////////////////////////////
@@ -96,7 +87,7 @@ gulp.task('build:dist', ['clean'], function() {
 //////////////////////////////////////
 
 // JS packaging for distribution
-gulp.task('webpack:dist', function() {
+gulp.task('webpack', function() {
 	// modify some webpack config options
 	var myConfig = Object.create(webpackConfig);
 	myConfig.output.path = dist + '/js';
@@ -110,37 +101,16 @@ gulp.task('webpack:dist', function() {
 		new webpack.optimize.UglifyJsPlugin()
 	);
 	webpack(myConfig, function(err, stats) {
-		if(err) throw new gutil.PluginError('webpack:dist', err);
-		gutil.log('[webpack:dist]', stats.toString({
+		if(err) throw new gutil.PluginError('webpack', err);
+		gutil.log('[webpack]', stats.toString({
 			colors: true
 		}));
-	});
-});
-
-// JS packaging for development
-gulp.task('webpack:dev', function() {
-	// modify some webpack config options
-	var myConfig = Object.create(webpackConfig);
-	myConfig.output.path = dev + '/js';
-	myConfig.plugins = myConfig.plugins.concat(
-		new webpack.DefinePlugin({
-			'process.env': {
-				'NODE_ENV': JSON.stringify('production')
-			}
-		})
-	);
-	webpack(myConfig, function(err, stats) {
-		if(err) throw new gutil.PluginError('webpack:dev', err);
-		gutil.log('[webpack:dev]', stats.toString({
-			colors: true
-		}));
-		return gulp.src(dev);
 	});
 });
 
 // JSHinting
 gulp.task('hint', function() {
-  return gulp.src(js + '/*.js')
+  return gulp.src('**/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'));
 });
@@ -153,7 +123,7 @@ gulp.task('hint', function() {
 // files are removed.
 //////////////////////////////////////
 gulp.task('clean', function() {
-  return gulp.src([dist, dev], {read: false})
+  return gulp.src([dist], {read: false})
     .pipe(clean());
 });
 

@@ -1,10 +1,10 @@
 {
   "name": "ES5-Observe-Polyfill",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An ES5 Object.observe polyfill.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./test/specs -R spec"
   },
   "keywords": [
     "data",
@@ -22,7 +22,10 @@
   "devDependencies": {
     "gulp-mocha": "~0.4.1",
     "gulp": "~3.5.5",
-    "chai": "^1.9.1",
-    "must": "^0.11.0"
+    "must": "^0.11.0",
+    "gulp-jshint": "^1.3.4",
+    "gulp-clean": "^0.2.4",
+    "gulp-util": "^2.2.14",
+    "webpack": "^1.1.0-beta12"
   }
 }
