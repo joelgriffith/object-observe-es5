@@ -10,6 +10,7 @@ var gulp = require('gulp'),
     clean = require('gulp-clean'),
     gutil = require('gulp-util'),
     info = require('./package.json'),
+    mocha = require('gulp-mocha'),
 	webpack = require('webpack');
 
 //////////////////////////////////////
@@ -72,7 +73,7 @@ var webpackConfig = {
 // suite your needs.
 //////////////////////////////////////
 gulp.task('default', ['clean'], function() {
-    gulp.start('hint', 'webpack');
+    gulp.start('hint', 'test', 'webpack');
 });
 
 //////////////////////////////////////
@@ -107,9 +108,15 @@ gulp.task('webpack', function() {
 
 // JSHinting
 gulp.task('hint', function() {
-  return gulp.src('./lib/*.js')
+  return gulp.src('lib/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'));
+});
+
+// Mocha
+gulp.task('test', function () {
+    gulp.src('./test/specs/*.js')
+        .pipe(mocha({reporter: 'nyan'}));
 });
 
 //////////////////////////////////////
