@@ -1,6 +1,8 @@
-# ES5 Object.observe polyfill
-[After taking inspiration from eligrey](https://gist.github.com/eligrey/384583), I've decided to implement an Object.observe polyfill that matches spec almost 100% (see below for differences). If you're not familiar with the API, [HTML5 Rocks](http://updates.html5rocks.com/2012/11/Respond-to-change-with-Object-observe) has a good writeup on it.
+# Differences with the original repo
+## Fixes
+This fork fixes the issue where `console.log(change.obj)` would print the observed object with its old value, preventing any observer to be able to retrieve the new value of the property whose change triggered the callback.
 
+# ES5 Object.observe polyfill
 ## Testing
 A full test-suite is included with this polyfill. You'll need `mocha`, and `jshint` installed globally for the best results. To run:
 
